@@ -16,12 +16,13 @@
         function searchReservation() {
             $("#dg").datagrid('load', {
                 "customer.id": $("#s_customerId").val(),
-                "user.id": $("#s_userId").val(),
+                "userId": $("#s_userId").val(),
                 "pet.name": $("#s_petName").val(),
                 "type": $("#s_type").val(),
                 "status": $("#s_status").val()
             });
         }
+
 
         function formatCustomer(val, row) {
             if (val == null) {
@@ -111,6 +112,64 @@
                 }
             });
         }
+
+        function addReservation(status) {
+            var selectedRows = $("#dg").datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                $.messager.alert("系统提示", "请选择一个要添加的预约！");
+                return;
+            }
+            var row = selectedRows[0];
+            var status = selectedRows[0].status;
+            if (status==0){
+                $("#dlg").dialog("open").dialog("setTitle", "添加预约信息");
+                $("#fm").form("load", row);
+                url = "/admin/reservation/save?id=" + row.id;
+            }else{
+                $.messager.alert("系统提示", "请选择一个未预约的医生进行预约！");
+                return;
+            }
+
+        }
+
+        function closeReservationDialog() {
+            $("#dlg").dialog("close");
+        }
+
+        function saveReservation() {
+            $("#fm").form("submit", {
+                url: url,
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功！");
+                        $("#dg").datagrid("reload");
+                        $("#dlg").dialog("close");
+                    } else {
+                        $.messager.alert("系统提示", result.errorInfo);
+                    }
+                }
+            });
+        }
+
+        $(function () {
+            $("#contact").combobox({
+                mode: 'remote',
+                url: '/admin/customer/comboList',
+                valueField: 'id',
+                textField: 'contact',
+                delay: 100,
+                onSelect: function(rec){
+                    var url = '/admin/pet/petList?customerId='+rec.id;
+                    $('#petName').combobox('clear');
+                    $('#petName').combobox('reload', url);
+                }
+            });
+        })
+
     </script>
 </head>
 <body style="margin: 1px">
@@ -132,6 +191,7 @@
 
 <div id="tb">
     <div>
+        <a href="javascript:addReservation(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加预约</a>
         <a href="javascript:dealReservation(0)" class="easyui-linkbutton" iconCls="icon-reset" plain="true">重置预约单</a>
         <a href="javascript:deleteReservation()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
         <strong style="font-size: 13px;color: orange">友情提示:如果要删除已处理的预约单,请先将其重置</strong>
@@ -150,14 +210,43 @@
             <option value="1">预约成功</option>
             <option value="3">预约结束</option>
         </select>
-        &nbsp;客户名称：<input class="easyui-combobox" id="s_userId" style="width: 100px"
-                          data-options="panelHeight:'auto',valueField:'id',textField:'trueName',url:'/admin/user/comboList'"/>
-        &nbsp;客户名称：<input class="easyui-combobox" id="s_customerId" style="width: 100px"
-                          data-options="panelHeight:'auto',valueField:'id',textField:'contact',url:'/admin/customer/comboList'"/>
+        &nbsp;客户名称：<input class="easyui-combobox" id="s_customerId" style="width: 100px"/>
         &nbsp;宠物名称:&nbsp;<input type="text" id="s_petName" size="20"
                                 onkeydown="if(event.keyCode==13) searchReservation()"/>
         <a href="javascript:searchReservation()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
+    <div id="dlg" class="easyui-dialog" style="width: 500px;height: 300px;padding: 10px 20px"
+         closed="true" buttons="#dlg-buttons" data-options="onClose:function(){resetValue()}">
+        <form id="fm" method="post" enctype="multipart/form-data">
+            <table cellspacing="8px">
+                <tr>
+                    <input type="text" name="id" style="display: none"/>
+                    <td>客户名称：</td>
+                    <td>
+                        <input class="easyui-combobox" id="contact" name="customerId" style="width: 250px"
+                           data-options="required:true,panelHeight:'auto'"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>客户宠物：</td>
+                <td>
+                    <input class="easyui-combobox" id="petName" name="petId" style="width: 250px"
+                           data-options="required:true,panelHeight:'auto',valueField:'id',textField:'name'"/>
+                </td>
+                </tr>
+                    <td valign="top">预约单描述：</td>
+                    <td>
+                        <textarea rows="5" cols="40" id="description" name="description"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+    <div id="dlg-buttons">
+        <a href="javascript:saveReservation()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+        <a href="javascript:closeReservationDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 </body>
 </html>

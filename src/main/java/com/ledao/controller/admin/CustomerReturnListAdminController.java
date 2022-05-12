@@ -140,14 +140,14 @@ public class CustomerReturnListAdminController {
     }
 
     /**
-     * 根据条件获取商品采购信息
+     * 根据条件获取药品采购信息
      *
      * @param customerReturnList
      * @param customerReturnListGoods
      * @return
      */
     @RequestMapping("/listCount")
-    @RequiresPermissions(value = "商品采购统计")
+    @RequiresPermissions(value = "药品采购统计")
     public Map<String, Object> listCount(CustomerReturnList customerReturnList, CustomerReturnListGoods customerReturnListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);

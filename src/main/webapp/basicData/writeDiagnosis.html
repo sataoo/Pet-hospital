@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>录入诊疗记录</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="/static/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        function submitData() {
+            $("#fm").form("submit", {
+                url: "/admin/diagnosis/save",
+                onSubmit: function () {
+                    return $(this).form("validate");
+                },
+                success: function (result) {
+                    var result = eval('(' + result + ')');
+                    if (result.success) {
+                        $.messager.alert("系统提示", "保存成功!");
+                        resetValue();
+                    } else {
+                        $.messager.alert("系统提示", "保存失败！");
+                    }
+                }
+            })
+        }
+
+        // function resetValue() {
+        //     $("#title").val("");
+        //     $("#typeId").combobox("setValue", "");
+        //     CKEDITOR.instances.content.setData("");
+        // }
+
+        $(function () {
+            $("#contact").combobox({
+                mode: 'remote',
+                url: '/admin/customer/comboList',
+                valueField: 'id',
+                textField: 'contact',
+                delay: 100,
+                onSelect: function(rec){
+                    var url = '/admin/pet/petList?customerId='+rec.id;
+                    $('#petName').combobox('clear');
+                    $('#petName').combobox('reload', url);
+                }
+            });
+        })
+    </script>
+</head>
+<body style="margin: 10px">
+<div id="p" class="easyui-panel" title="录入诊疗记录" style="padding: 10px;width: 1300px">
+    <form action="" id="fm" method="post" enctype="multipart/form-data">
+        <table cellspacing="20px">
+            <tr>
+<!--                <input type="text" name="user" value="${session.user}" style="display: none"/>-->
+                <td>客户名称：</td>
+                <td>
+                    <input class="easyui-combobox" id="contact" name="customerId" style="width: 250px"
+                           data-options="required:true,panelHeight:'auto'"/>
+                </td>
+            </tr>
+            <tr>
+                <td>客户宠物：</td>
+                <td>
+                    <input class="easyui-combobox" id="petName" name="petId" style="width: 250px"
+                           data-options="required:true,panelHeight:'auto',valueField:'id',textField:'name'"/>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">诊疗内容：</td>
+                <td>
+                    <textarea id="description" name="description" rows="20" cols="80"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td width="80px">诊疗价格(单元：元）</td>
+                <td>
+                    <input type="text" id="price" name="price" style="width: 400px" required="true"
+                           class="easyui-validatebox"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="javascript:submitData()" class="easyui-linkbutton"
+                       data-options="iconCls:'icon-submit'"><strong>提交记录</strong></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

@@ -19,7 +19,7 @@ public interface GoodsTypeService {
      * @param parentId
      * @return
      */
-    List<GoodsType> findByParentId(Integer parentId);
+    List<GoodsType>  findByParentId(Integer parentId);
 
     /**
      * 添加商品类别

@@ -138,7 +138,7 @@ public class EquipmentAdminController {
      * @return
      */
     @RequestMapping("/listNoUse")
-    @RequiresPermissions(value = "设备使用管理")
+//    @RequiresPermissions(value = {"设备使用管理","设备使用查询"})
     public Map<String, Object> listNoUse(Equipment equipment, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
@@ -162,7 +162,7 @@ public class EquipmentAdminController {
      * @return
      */
     @RequestMapping("/listIsUse")
-    @RequiresPermissions(value = "设备使用管理")
+//    @RequiresPermissions(value = {"设备使用管理","设备使用查询"})
     public Map<String, Object> listIsUse(Equipment equipment, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);

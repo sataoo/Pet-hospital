@@ -156,7 +156,7 @@ public class SaleListAdminController {
      * @return
      */
     @RequestMapping("/listCount")
-    @RequiresPermissions(value = "商品采购统计")
+    @RequiresPermissions(value = "药品采购统计")
     public Map<String, Object> listCount(SaleList saleList, SaleListGoods saleListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);

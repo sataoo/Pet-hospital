@@ -69,7 +69,7 @@ public class OverflowListAdminController {
      * @throws Exception
      */
     @RequestMapping("/genCode")
-    @RequiresPermissions(value = "商品报溢")
+    @RequiresPermissions(value = "药品报溢")
     public String genCode() throws Exception {
         StringBuffer code = new StringBuffer("BY");
         code.append(DateUtil.getCurrentDateStr());
@@ -91,7 +91,7 @@ public class OverflowListAdminController {
      * @throws Exception
      */
     @RequestMapping("/save")
-    @RequiresPermissions(value = "商品报溢")
+    @RequiresPermissions(value = "药品报溢")
     public Map<String, Object> save(OverflowList overflowList, String goodsJson){
         Map<String, Object> resultMap = new HashMap<>(16);
         // 设置操作用户

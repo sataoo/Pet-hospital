@@ -15,7 +15,7 @@
 
         function searchCustomer() {
             $("#dg").datagrid('load', {
-                "name": $("#s_name").val(),
+                "contact": $("#s_contact").val(),
                 "userName": $("#s_userName").val()
             });
         }
@@ -118,7 +118,7 @@
     <thead>
     <th field="cb" checkbox="true" align="center"></th>
     <th field="id" width="20" align="center">编号</th>
-    <th field="name" width="100" align="center">公司名称</th>
+<!--    <th field="name" width="100" align="center">公司名称</th>-->
     <th field="contact" width="50" align="center">联系人</th>
     <th field="userName" width="100" align="center">用户名</th>
     <th field="password" width="100" align="center">密码</th>
@@ -136,7 +136,7 @@
         <a href="javascript:deleteCustomer()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
     </div>
     <div>
-        &nbsp;客户名称：&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>
+        &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>
         &nbsp;用户名：&nbsp;<input type="text" id="s_userName" size="20" onkeydown="if(event.keyCode==13) searchCustomer()"/>
         <a href="javascript:searchCustomer()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
@@ -148,16 +148,16 @@
     <form id="fm" method="post" enctype="multipart/form-data">
         <table cellspacing="8px">
             <tr>
-                <td>公司名称：</td>
-                <td>
-                    <input type="text" id="name" name="name" class="easyui-validatebox" required="true"
-                           style="width: 250px" placeholder="没有公司的话,请填'无'"/>
-                </td>
+<!--                <td>公司名称：</td>-->
+<!--                <td>-->
+<!--                    <input type="text" id="name" name="name" class="easyui-validatebox" required="true"-->
+<!--                           style="width: 250px" placeholder="没有公司的话,请填'无'"/>-->
+<!--                </td>-->
             </tr>
             <tr>
                 <td>用户名：</td>
                 <td>
-                    <input type="text" id="userName" name="userName" class="easyui-validatebox" required="true"
+                    <input type="text" id="userName" class="easyui-validatebox" name="userName" required="true"
                            style="width: 250px"/>
                 </td>
             </tr>
@@ -171,7 +171,7 @@
             <tr>
                 <td>用户头像：</td>
                 <td>
-                    <input type="file" id="customerImage" name="customerImage"/>
+                    <input type="file" id="customerImage" name="customerImage"  placeholder="可为空"/>
                 </td>
             </tr>
             <tr>

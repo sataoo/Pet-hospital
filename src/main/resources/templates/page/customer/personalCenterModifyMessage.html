@@ -60,15 +60,15 @@
                                            th:value="${session.currentCustomer==null?'':session.currentCustomer.getNumber()}" placeholder="必填">
                                 </div>
                                 <div class="form-group">
-                                    <label>收货地址:</label>
+                                    <label>地址:</label>
                                     <input id="address" name="address" type="text" required="required" class="form-control"
                                            th:value="${session.currentCustomer==null?'':session.currentCustomer.getAddress()}" placeholder="必填">
                                 </div>
-                                <div class="form-group">
-                                    <label>公司名称:</label>
-                                    <input id="name" name="name" type="text" class="form-control" placeholder="可不填..."
-                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getName()}">
-                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label>公司名称:</label>-->
+<!--                                    <input id="name" name="name" type="text" class="form-control" placeholder="可不填..."-->
+<!--                                           th:value="${session.currentCustomer==null?'':session.currentCustomer.getName()}">-->
+<!--                                </div>-->
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> 立即修改
                                     </button>

@@ -152,7 +152,7 @@ public class PurchaseListAdminController {
      * @return
      */
     @RequestMapping("/listCount")
-    @RequiresPermissions(value = "商品采购统计")
+    @RequiresPermissions(value = "药品采购统计")
     public Map<String, Object> listCount(PurchaseList purchaseList, PurchaseListGoods purchaseListGoods) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Map<String, Object> map = new HashMap<>(16);
@@ -179,7 +179,7 @@ public class PurchaseListAdminController {
      * @return
      */
     @RequestMapping("/listGoods")
-    @RequiresPermissions(value = "进货单据查询")
+//    @RequiresPermissions(value = "进货单据查询")
     public Map<String, Object> listGoods(Integer purchaseListId) {
         if (purchaseListId == null) {
             return null;

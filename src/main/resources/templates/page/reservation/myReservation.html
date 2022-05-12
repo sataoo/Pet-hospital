@@ -58,14 +58,14 @@
                                             <span th:text="${#dates.format(reservation.reserveDate,'yyyy-MM-dd HH:mm')}"></span>
                                         </td>
                                         <td style="text-align: center">
-                                            <span th:text="${reservation.user.trueName}"></span>
+                                            <span th:text="${reservation.user.trueName}" th:if="${reservation.user!=null}"></span>
                                         </td>
                                         <td style="text-align: center">
-                                            <span th:if="${reservation.status==0}">未处理(⊙﹏⊙)</span>
+                                            <span th:if="${reservation.status==0}" style="color: red">预约被重置</span>
                                             <span th:if="${reservation.status==1}"
-                                                  style="color: #0c9076">预约成功(๑•̀ㅂ•́)و✧</span>
-                                            <span th:if="${reservation.status==2}" style="color: red">预约失败〒▽〒</span>
-                                            <span th:if="${reservation.status==3}" style="color: darksalmon">预约结束┏(＾0＾)┛</span>
+                                                  style="color: #0c9076">预约成功</span>
+                                            <span th:if="${reservation.status==2}" style="color: red">预约失败</span>
+                                            <span th:if="${reservation.status==3}" style="color: darksalmon">预约结束</span>
                                         </td>
                                         <td style="text-align: center">
                                             <a th:href="@{'/reservation/reservationDetails?reservationId='+${reservation.id}}"><i

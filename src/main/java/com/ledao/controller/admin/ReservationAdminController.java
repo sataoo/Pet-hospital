@@ -5,7 +5,9 @@ import com.ledao.service.CustomerService;
 import com.ledao.service.LogService;
 import com.ledao.service.PetService;
 import com.ledao.service.ReservationService;
+import com.ledao.util.DateUtil;
 import com.ledao.util.StringUtil;
+import org.apache.commons.io.FileUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -181,6 +185,35 @@ public class ReservationAdminController {
         }
         reservationService.update(reservation);
         resultMap.put("success", true);
+        return resultMap;
+    }
+
+    /**
+     * 管理员添加预约操作
+     * @param reservation
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/save")
+    @RequiresPermissions(value = "预约单管理")
+    public Map<String, Object> save(@RequestParam(value = "id") Integer reservationId, Integer customerId, Integer petId, String description) throws Exception {
+        Map<String, Object> resultMap = new HashMap<>(16);
+        int key = 0;
+        Reservation byId1 = reservationService.findById(reservationId);
+        Customer byId2 = customerService.findById(customerId);
+        Pet byId3 = petService.findById(petId);
+        byId1.setCustomer(byId2);
+        byId1.setPet(byId3);
+        byId1.setPetId(petId);
+        byId1.setStatus(1);
+        byId1.setDescription(description);
+        key = reservationService.update(byId1);
+        logService.add(new Log(Log.UPDATE_ACTION, "添加预约信息" + byId1));
+        if (key > 0) {
+            resultMap.put("success", true);
+        } else {
+            resultMap.put("success", false);
+        }
         return resultMap;
     }
 

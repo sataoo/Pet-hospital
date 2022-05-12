@@ -48,12 +48,12 @@
                                 </div>
                                 <div class="form-group">
                                     <kbd style="font-size: 15px">预约状态:</kbd>
-                                    <span th:if="${reservation.status==0}" style="font-size: 20px">未处理(⊙﹏⊙)</span>
-                                    <span th:if="${reservation.status==1}" style="color: #0c9076;font-size: 20px">预约成功(๑•̀ㅂ•́)و✧</span>
-                                    <span th:if="${reservation.status==2}" style="color: red;font-size: 20px">预约失败〒▽〒</span>
-                                    <span th:if="${reservation.status==3}" style="color: darksalmon;font-size: 20px">预约结束┏(＾0＾)┛</span>
+                                    <span th:if="${reservation.status==0}" style="font-size: 20px">预约被重置</span>
+                                    <span th:if="${reservation.status==1}" style="color: #0c9076;font-size: 20px">预约成功</span>
+                                    <span th:if="${reservation.status==2}" style="color: red;font-size: 20px">预约失败</span>
+                                    <span th:if="${reservation.status==3}" style="color: darksalmon;font-size: 20px">预约结束</span>
                                 </div>
-                                <div class="form-group"th:if="${reservation.user.trueName!=null}">
+                                <div class="form-group"th:if="${reservation.user!=null}">
                                     <kbd style="font-size: 15px">接受预约人:</kbd>
                                     <span th:text="${reservation.user.trueName}" style="font-size: 20px"></span>
                                 </div>

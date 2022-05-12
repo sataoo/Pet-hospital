@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @company
  * @create 2020-01-17 15:01
  */
-public class Customer implements Serializable {
+public class  Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class Customer implements Serializable {
      */
     private Integer id;
     /**
-     * 客户名称
+     * 公司名称
      */
     private String name;
     /**

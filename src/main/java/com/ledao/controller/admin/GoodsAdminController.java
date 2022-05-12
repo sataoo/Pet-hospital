@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 后台管理商品Controller
+ * 后台管理药品Controller
  *
  * @author LeDao
  * @company
@@ -51,7 +51,7 @@ public class GoodsAdminController {
     private LogService logService;
 
     /**
-     * 分页查询商品信息
+     * 分页查询药品信息
      *
      * @param searchGoods
      * @param page
@@ -59,7 +59,7 @@ public class GoodsAdminController {
      * @return
      */
     @RequestMapping("/list")
-    @RequiresPermissions(value = {"商品管理", "进货入库", "退货出库", "销售出库", "客户退货", "商品报损", "商品报溢"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"药品管理", "进货入库", "退货出库", "销售出库", "客户退货", "药品报损", "药品报溢"}, logical = Logical.OR)
     public Map<String, Object> list(Goods searchGoods, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
@@ -73,12 +73,12 @@ public class GoodsAdminController {
         map.put("codeOrName", searchGoods.getCodeOrName());
         resultMap.put("rows", goodsService.list(map));
         resultMap.put("total", goodsService.getCount(map));
-        logService.add(new Log(Log.SEARCH_ACTION, "查询商品库存信息"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询药品库存信息"));
         return resultMap;
     }
 
     /**
-     * 查询库存报警商品
+     * 查询库存报警药品
      *
      * @return
      */
@@ -87,12 +87,12 @@ public class GoodsAdminController {
     public Map<String, Object> listAlarm() {
         Map<String, Object> resultMap = new HashMap<>(16);
         resultMap.put("rows", goodsService.listAlarm());
-        logService.add(new Log(Log.SEARCH_ACTION, "查询库存报警商品信息"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询库存报警药品信息"));
         return resultMap;
     }
 
     /**
-     * 根据条件分页查询商品库存信息
+     * 根据条件分页查询药品库存信息
      *
      * @param searchGoods
      * @param page
@@ -130,12 +130,12 @@ public class GoodsAdminController {
         }
         resultMap.put("rows", goodsList);
         resultMap.put("total", total);
-        logService.add(new Log(Log.SEARCH_ACTION, "查询商品信息"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询药品信息"));
         return resultMap;
     }
 
     /**
-     * 根据条件分页查询没有库存的商品信息
+     * 根据条件分页查询没有库存的药品信息
      *
      * @param codeOrName
      * @param page
@@ -154,12 +154,12 @@ public class GoodsAdminController {
         map.put("codeOrName", codeOrName);
         resultMap.put("rows", goodsService.listNoInventoryQuantityByCodeOrName(map));
         resultMap.put("total", goodsService.getCountNoInventoryQuantityByCodeOrName(map));
-        logService.add(new Log(Log.SEARCH_ACTION, "查询商品信息(无库存)"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询药品信息(无库存)"));
         return resultMap;
     }
 
     /**
-     * 根据条件分页查询有库存的商品信息
+     * 根据条件分页查询有库存的药品信息
      *
      * @param codeOrName
      * @param page
@@ -178,17 +178,17 @@ public class GoodsAdminController {
         map.put("codeOrName", codeOrName);
         resultMap.put("rows", goodsService.listHasInventoryQuantityByCodeOrName(map));
         resultMap.put("total", goodsService.getCountHasInventoryQuantityByCodeOrName(map));
-        logService.add(new Log(Log.SEARCH_ACTION, "查询商品信息(无库存)"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询药品信息(无库存)"));
         return resultMap;
     }
 
     /**
-     * 生成商品编码
+     * 生成药品编码
      *
      * @return
      */
     @RequestMapping("/genGoodsCode")
-    @RequiresPermissions(value = "商品管理")
+    @RequiresPermissions(value = "药品管理")
     public String genGoodsCode() {
         String maxGoodsCode = goodsService.getMaxGoodsCode();
         if (StringUtil.isNotEmpty(maxGoodsCode)) {
@@ -205,13 +205,13 @@ public class GoodsAdminController {
     }
 
     /**
-     * 添加或者修改商品信息
+     * 添加或者修改药品信息
      *
      * @param goods
      * @return
      */
     @RequestMapping("/save")
-    @RequiresPermissions(value = "商品管理")
+    @RequiresPermissions(value = "药品管理")
     public Map<String, Object> save(Goods goods, @RequestParam("goodsImage")MultipartFile file)throws Exception {
         Map<String, Object> resultMap = new HashMap<>(16);
         if (!file.isEmpty()) {
@@ -228,15 +228,15 @@ public class GoodsAdminController {
         }
         int key;
         if (goods.getId() != null) {
-            //获取更新前的商品信息
+            //获取更新前的药品信息
             Goods goods1 = goodsService.findById(goods.getId());
             goods.setInventoryQuantity(goods1.getInventoryQuantity());
             goods.setState(goods1.getState());
             goods.setLastPurchasingPrice(goods1.getLastPurchasingPrice());
-            logService.add(new Log(Log.UPDATE_ACTION, "更新商品信息" + goods));
+            logService.add(new Log(Log.UPDATE_ACTION, "更新药品信息" + goods));
             key = goodsService.update(goods);
         } else {
-            logService.add(new Log(Log.ADD_ACTION, "添加商品信息" + goods));
+            logService.add(new Log(Log.ADD_ACTION, "添加药品信息" + goods));
             // 设置上次进价为当前价格
             goods.setIsNew(1);
             goods.setLastPurchasingPrice(goods.getPurchasingPrice());
@@ -251,24 +251,24 @@ public class GoodsAdminController {
     }
 
     /**
-     * 删除商品信息
+     * 删除药品信息
      *
      * @param id
      * @return
      */
     @RequestMapping("/delete")
-    @RequiresPermissions(value = "商品管理")
+    @RequiresPermissions(value = "药品管理")
     public Map<String, Object> delete(Integer id) {
         Map<String, Object> resultMap = new HashMap<>(16);
         Goods goods = goodsService.findById(id);
         if (goods.getState() == 1) {
             resultMap.put("success", false);
-            resultMap.put("errorInfo", "该商品已经期初入库，不能删除");
+            resultMap.put("errorInfo", "该药品已经期初入库，不能删除");
         } else if (goods.getState() == 2) {
             resultMap.put("success", false);
-            resultMap.put("errorInfo", "该商品已经发生单据，不能删除");
+            resultMap.put("errorInfo", "该药品已经发生单据，不能删除");
         } else {
-            logService.add(new Log(Log.DELETE_ACTION, "删除商品信息" + goods));
+            logService.add(new Log(Log.DELETE_ACTION, "删除药品信息" + goods));
             if (goodsService.findById(id).getImageName() != null) {
                 FileUtils.deleteQuietly(new File(goodsImageFilePath + goodsService.findById(goodsService.findById(id).getId()).getImageName()));
             }
@@ -279,7 +279,7 @@ public class GoodsAdminController {
     }
 
     /**
-     * 添加商品到仓库 修改库存以及价格信息
+     * 添加药品到仓库 修改库存以及价格信息
      *
      * @param id
      * @param num
@@ -296,13 +296,13 @@ public class GoodsAdminController {
         goods.setLastPurchasingPrice(price);
         goods.setState(1);
         goodsService.update(goods);
-        logService.add(new Log(Log.UPDATE_ACTION, "修改商品信息:" + goods + ",价格=" + price + ",库存=" + num));
+        logService.add(new Log(Log.UPDATE_ACTION, "修改药品信息:" + goods + ",价格=" + price + ",库存=" + num));
         resultMap.put("success", true);
         return resultMap;
     }
 
     /**
-     * 删除库存，吧商品的库存设置为0
+     * 删除库存，吧药品的库存设置为0
      *
      * @param id
      * @return
@@ -314,11 +314,11 @@ public class GoodsAdminController {
         Goods goods = goodsService.findById(id);
         if (goods.getState() == 2) {
             resultMap.put("success", false);
-            resultMap.put("errorInfo", "该商品已经发生单据，不能删除");
+            resultMap.put("errorInfo", "该药品已经发生单据，不能删除");
         } else {
             goods.setInventoryQuantity(0);
             goodsService.update(goods);
-            logService.add(new Log(Log.UPDATE_ACTION, "修改商品信息" + goods));
+            logService.add(new Log(Log.UPDATE_ACTION, "修改药品信息" + goods));
             resultMap.put("success", true);
         }
         return resultMap;

@@ -61,6 +61,10 @@
                                     <kbd style="font-size: 15px">医生答复:</kbd>
                                     <span th:text="${inquiry.reply}" style="font-size: 20px"></span>
                                 </div>
+                                <div class="form-group" th:if="${inquiry.reply!=null}">
+                                    <kbd style="font-size: 15px">医疗价格参考:</kbd>
+                                    <span th:text="${inquiry.price} + '(元)'" style="font-size: 20px"></span>
+                                </div>
                             </div>
                         </div>
                         <!-- /.box-->

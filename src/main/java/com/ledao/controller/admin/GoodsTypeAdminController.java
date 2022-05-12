@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 后台管理商品类别Controller
+ * 后台管理药品类别Controller
  *
  * @author LeDao
  * @company
@@ -38,7 +38,7 @@ public class GoodsTypeAdminController {
     private LogService logService;
 
     @RequestMapping("/save")
-    @RequiresPermissions(value = {"商品管理", "进货入库", "退货出库", "销售出库", "客户退货", "商品报损", "商品报溢"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"药品管理", "进货入库", "退货出库", "销售出库", "客户退货", "药品报损", "药品报溢"}, logical = Logical.OR)
     public Map<String, Object> save(String name, Integer parentId) {
         Map<String, Object> resultMap = new HashMap<>(16);
         GoodsType goodsType = new GoodsType();
@@ -52,19 +52,19 @@ public class GoodsTypeAdminController {
         parentGoodsType.setState(1);
         goodsTypeService.update(parentGoodsType);
 
-        logService.add(new Log(Log.ADD_ACTION, "添加商品类别" + goodsType));
+        logService.add(new Log(Log.ADD_ACTION, "添加药品类别" + goodsType));
         resultMap.put("success", true);
         return resultMap;
     }
 
     /**
-     * 商品类别删除
+     * 药品类别删除
      *
      * @param id
      * @return
      */
     @RequestMapping("/delete")
-    @RequiresPermissions(value = {"商品管理", "进货入库", "退货出库", "销售出库", "客户退货", "商品报损", "商品报溢"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"药品管理", "进货入库", "退货出库", "销售出库", "客户退货", "药品报损", "药品报溢"}, logical = Logical.OR)
     public Map<String, Object> delete(Integer id) {
         Map<String, Object> resultMap = new HashMap<>(16);
         if (goodsService.findByTypeId(id).size() == 0) {
@@ -74,12 +74,12 @@ public class GoodsTypeAdminController {
                 parentGoodsType.setState(0);
                 goodsTypeService.update(parentGoodsType);
             }
-            logService.add(new Log(Log.DELETE_ACTION, "删除商品类别信息" + goodsType));
+            logService.add(new Log(Log.DELETE_ACTION, "删除药品类别信息" + goodsType));
             goodsTypeService.delete(id);
             resultMap.put("success", true);
         } else {
             resultMap.put("success", false);
-            resultMap.put("errorInfo", "该类别下含有商品,不能删除!");
+            resultMap.put("errorInfo", "该类别下含有药品,不能删除!");
         }
         return resultMap;
     }
@@ -91,9 +91,9 @@ public class GoodsTypeAdminController {
      * @throws Exception
      */
     @RequestMapping("/loadTreeInfo")
-    @RequiresPermissions(value = {"商品管理", "进货入库", "退货出库", "销售出库", "客户退货", "当前库存查询", "商品报损", "商品报溢", "商品采购统计", "商品销售统计"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"药品管理", "进货入库", "退货出库", "销售出库", "客户退货", "当前库存查询", "药品报损", "药品报溢", "药品采购统计", "药品销售统计"}, logical = Logical.OR)
     public String loadTreeInfo() {
-        logService.add(new Log(Log.SEARCH_ACTION, "查询所有商品类别信息"));
+        logService.add(new Log(Log.SEARCH_ACTION, "查询所有药品类别信息"));
         return getAllByParentId(-1).toString();
     }
 

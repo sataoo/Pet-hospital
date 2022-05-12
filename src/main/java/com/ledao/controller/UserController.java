@@ -67,6 +67,7 @@ public class UserController {
             resultMap.put("errorInfo", bindingResult.getFieldError().getDefaultMessage());
             return resultMap;
         }
+        session.setAttribute("user", user);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
         try {

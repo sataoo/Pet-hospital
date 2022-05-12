@@ -150,6 +150,12 @@
             });
 
         });
+        $(document).ready(function() {
+            $("#save").click(function(){
+                alert("系统提示：角色权限将在下次登录时生效！");
+            });
+        });
+
     </script>
 </head>
 <body style="margin: 1px">
@@ -210,7 +216,7 @@
 </div>
 
 <div id="dlg-buttons2">
-    <a href="javascript:saveMenuSet()" class="easyui-linkbutton" iconCls="icon-ok" >保存</a>
+    <a href="javascript:saveMenuSet()" class="easyui-linkbutton" iconCls="icon-ok" id="save">保存</a>
     <a href="javascript:closeMenuSetDialog()" class="easyui-linkbutton" iconCls="icon-cancel" >关闭</a>
 </div>
 

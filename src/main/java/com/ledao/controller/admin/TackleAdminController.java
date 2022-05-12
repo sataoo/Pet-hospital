@@ -57,7 +57,7 @@ public class TackleAdminController {
      * @return
      */
     @RequestMapping("/list")
-    @RequiresPermissions(value = "医院用品管理")
+//    @RequiresPermissions(value = "医院用品管理")
     public Map<String, Object> list(Tackle tackle, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "rows", required = false) Integer rows) {
         PageBean pageBean = new PageBean(page, rows);
         Map<String, Object> resultMap = new HashMap<>(16);
@@ -79,7 +79,7 @@ public class TackleAdminController {
      * @return
      */
     @RequestMapping("/save")
-    @RequiresPermissions(value = "医院用品管理")
+//    @RequiresPermissions(value = "医院用品管理")
     public Map<String, Object> save(Tackle tackle) {
         Map<String, Object> resultMap = new HashMap<>(16);
         int key;
@@ -106,7 +106,7 @@ public class TackleAdminController {
      * @return
      */
     @RequestMapping("/delete")
-    @RequiresPermissions(value = "医院用品管理")
+//    @RequiresPermissions(value = "医院用品管理")
     public Map<String, Object> delete(String ids) {
         Map<String, Object> resultMap = new HashMap<>(16);
         String[] idsStr = ids.split(",");

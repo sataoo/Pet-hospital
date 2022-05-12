@@ -1,11 +1,13 @@
 server:
-  port: 80
+  port: 81
   servlet:
     context-path: /
   tomcat:
     uri-encoding: utf-8
 
 spring:
+  main:
+    banner-mode: off
   servlet:
     multipart:
       enabled: true
@@ -18,7 +20,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/db_pethospital?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
     username: root
-    password: 123456
+    password: boge1783
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss

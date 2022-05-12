@@ -32,15 +32,15 @@
                     </div>
                     <div id="basket" class="col-lg-9" th:if="${assayList.size()>=1}">
                         <div class="box container">
-                                <p class="text-muted">您一共有 <span
+                                <p class="text-muted">您的宠物一共有 <span
                                         th:text="${total}" style="color: orangered"></span> 个化验记录</p>
                                 <div>
                                     <table class="table">
                                         <thead>
                                         <tr>
                                             <th style="text-align: center">宠物头像</th>
-                                            <th style="text-align: center">宠物名称</th>
                                             <th style="text-align: center">创建时间</th>
+                                            <th style="text-align: center">宠物名称</th>
                                             <th style="text-align: center">操作</th>
                                         </tr>
                                         </thead>

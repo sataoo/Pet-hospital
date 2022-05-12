@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>商品管理</title>
+    <title>药品管理</title>
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/metro-blue/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.7.0/themes/icon.css">
     <script type="text/javascript" src="/static/jquery-easyui-1.7.0/jquery.min.js"></script>
@@ -39,22 +39,22 @@
 
         });
 
-        function openGoodsTypeAddDialog() {
-            $("#dlg").dialog("open").dialog("setTitle", "新增商品类别");
-        }
+        // function openGoodsTypeAddDialog() {
+        //     $("#dlg").dialog("open").dialog("setTitle", "新增商品类别");
+        // }
 
-        function deleteGoodsType() {
-            var node = $("#tree").tree("getSelected"); // 获取选中节点
-            var id = node.id;
-            $.post("/admin/goodsType/delete", {id: id}, function (result) {
-                if (result.success) {
-                    $("#tree").tree("reload");
-                    $("#del").linkbutton("disable");
-                } else {
-                    $.messager.alert("系统提示", result.errorInfo);
-                }
-            }, "json");
-        }
+        // function deleteGoodsType() {
+        //     var node = $("#tree").tree("getSelected"); // 获取选中节点
+        //     var id = node.id;
+        //     $.post("/admin/goodsType/delete", {id: id}, function (result) {
+        //         if (result.success) {
+        //             $("#tree").tree("reload");
+        //             $("#del").linkbutton("disable");
+        //         } else {
+        //             $.messager.alert("系统提示", result.errorInfo);
+        //         }
+        //     }, "json");
+        // }
 
         function saveGoodsType() {
             if (!$("#fm").form("validate")) {
@@ -346,11 +346,11 @@
 <body class="easyui-layout" style="padding-top: 2px">
 <div data-options="region:'west',collapsible:false" style="width: 200px" title="商品类别" split=true>
     <ul id="tree" class="easyui-tree" style="padding: 10px"></ul>
-    <div style="text-align: center">
-        <a href="javascript:openGoodsTypeAddDialog()" class="easyui-linkbutton" iconCls="icon-add">新增</a>
-        <a id="del" href="javascript:deleteGoodsType()" class="easyui-linkbutton" disabled=true
-           iconCls="icon-remove">删除</a>
-    </div>
+<!--    <div style="text-align: center">-->
+<!--        <a href="javascript:openGoodsTypeAddDialog()" class="easyui-linkbutton" iconCls="icon-add">新增</a>-->
+<!--        <a id="del" href="javascript:deleteGoodsType()" class="easyui-linkbutton" disabled=true-->
+<!--           iconCls="icon-remove">删除</a>-->
+<!--    </div>-->
 </div>
 <div data-options="region:'center'">
     <table id="dg" title="商品管理"    class="easyui-datagrid"

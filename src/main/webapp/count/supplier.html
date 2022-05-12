@@ -86,39 +86,39 @@
         }
 
 
-        function pay() {
-            var selectedRows = $("#dg").datagrid("getSelections");
-            if (selectedRows.length != 1) {
-                $.messager.alert("系统提示", "请选择一条要结算的记录！");
-                return;
-            }
-            var id = selectedRows[0].id;
-            var type = selectedRows[0].type;
-            $.messager.confirm("系统提示", "您确定要结算吗？", function (r) {
-                if (r) {
-                    if (type == "进货单") {
-                        $.post("/admin/purchaseList/update", {id: id}, function (result) {
-                            if (result.success) {
-                                $.messager.alert("系统提示", "提交成功！");
-                                search();
-                            } else {
-                                $.messager.alert("系统提示", result.errorInfo);
-                            }
-                        }, "json");
-                    } else {
-                        $.post("/admin/returnList/update", {id: id}, function (result) {
-                            if (result.success) {
-                                $.messager.alert("系统提示", "提交成功！");
-                                search();
-                            } else {
-                                $.messager.alert("系统提示", result.errorInfo);
-                            }
-                        }, "json");
-                    }
-
-                }
-            });
-        }
+        // function pay() {
+        //     var selectedRows = $("#dg").datagrid("getSelections");
+        //     if (selectedRows.length != 1) {
+        //         $.messager.alert("系统提示", "请选择一条要结算的记录！");
+        //         return;
+        //     }
+        //     var id = selectedRows[0].id;
+        //     var type = selectedRows[0].type;
+        //     $.messager.confirm("系统提示", "您确定要结算吗？", function (r) {
+        //         if (r) {
+        //             if (type == "进货单") {
+        //                 $.post("/admin/purchaseList/update", {id: id}, function (result) {
+        //                     if (result.success) {
+        //                         $.messager.alert("系统提示", "提交成功！");
+        //                         search();
+        //                     } else {
+        //                         $.messager.alert("系统提示", result.errorInfo);
+        //                     }
+        //                 }, "json");
+        //             } else {
+        //                 $.post("/admin/returnList/update", {id: id}, function (result) {
+        //                     if (result.success) {
+        //                         $.messager.alert("系统提示", "提交成功！");
+        //                         search();
+        //                     } else {
+        //                         $.messager.alert("系统提示", result.errorInfo);
+        //                     }
+        //                 }, "json");
+        //             }
+        //
+        //         }
+        //     });
+        // }
 
 
         $(document).ready(function () {
@@ -200,7 +200,7 @@
             </select>
             &nbsp;&nbsp;<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search"
                            plain="true">搜索</a>
-            &nbsp;&nbsp;<a href="javascript:pay()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">支付结算</a>
+<!--            &nbsp;&nbsp;<a href="javascript:pay()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">支付结算</a>-->
         </fieldset>
     </div>
 </div>

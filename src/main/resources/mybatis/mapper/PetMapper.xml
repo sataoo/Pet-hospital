@@ -17,6 +17,9 @@
             <if test="customer!=null">
                 and customerId=#{customer.id}
             </if>
+            <if test="name!=null and name!=''">
+            and name like #{name}
+            </if>
         </where>
         <if test="start!=null and size!=null">
             limit #{start},#{size}
@@ -62,6 +65,10 @@
     </select>
     <select id="findByName" parameterType="string" resultMap="PetResult">
         select * from t_pet where name=#{name}
+    </select>
+    
+    <select id="findByCustomerId" parameterType="integer" resultMap="PetResult">
+        select * from t_pet where customerId=#{customerId}
     </select>
 
 </mapper>

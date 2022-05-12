@@ -220,22 +220,22 @@
 
         // 商品类别模块
 
-        function openGoodsTypeAddDialog() {
-            $("#dlg3").dialog("open").dialog("setTitle", "新增商品类别");
-        }
+        // function openGoodsTypeAddDialog() {
+        //     $("#dlg3").dialog("open").dialog("setTitle", "新增商品类别");
+        // }
 
-        function deleteGoodsType() {
-            var node = $("#tree").tree("getSelected"); // 获取选中节点
-            var id = node.id;
-            $.post("/admin/goodsType/delete", {id: id}, function (result) {
-                if (result.success) {
-                    $("#tree").tree("reload");
-                    $("#del").linkbutton("disable");
-                } else {
-                    $.messager.alert("系统提示", result.errorInfo);
-                }
-            }, "json");
-        }
+        // function deleteGoodsType() {
+        //     var node = $("#tree").tree("getSelected"); // 获取选中节点
+        //     var id = node.id;
+        //     $.post("/admin/goodsType/delete", {id: id}, function (result) {
+        //         if (result.success) {
+        //             $("#tree").tree("reload");
+        //             $("#del").linkbutton("disable");
+        //         } else {
+        //             $.messager.alert("系统提示", result.errorInfo);
+        //         }
+        //     }, "json");
+        // }
 
         function saveGoodsType() {
             if (!$("#fm3").form("validate")) {
@@ -398,11 +398,11 @@
 
         <div data-options="region:'west',collapsible:false" style="width: 200px" title="商品类别" split=true>
             <ul id="tree" class="easyui-tree" style="padding: 10px"></ul>
-            <div style="position: absolute;bottom: 10px;left: 15px">
-                <a href="javascript:openGoodsTypeAddDialog()" class="easyui-linkbutton" iconCls="icon-add">新增</a>
-                <a id="del" href="javascript:deleteGoodsType()" class="easyui-linkbutton" disabled=true
-                   iconCls="icon-remove">删除</a>
-            </div>
+<!--            <div style="position: absolute;bottom: 10px;left: 15px">-->
+<!--                <a href="javascript:openGoodsTypeAddDialog()" class="easyui-linkbutton" iconCls="icon-add">新增</a>-->
+<!--                <a id="del" href="javascript:deleteGoodsType()" class="easyui-linkbutton" disabled=true-->
+<!--                   iconCls="icon-remove">删除</a>-->
+<!--            </div>-->
         </div>
 
         <div data-options="region:'center'">

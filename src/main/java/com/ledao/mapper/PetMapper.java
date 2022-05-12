@@ -69,4 +69,12 @@ public interface PetMapper {
      * @return
      */
     Pet findByName(String name);
+
+    /**
+     * 根据用户id查找宠物
+     * @param customerId
+     * @return
+     */
+
+    List<Pet> findByCustomerId(Integer customerId);
 }

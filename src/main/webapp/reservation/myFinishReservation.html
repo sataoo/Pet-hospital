@@ -82,9 +82,9 @@
 
 <div id="tb">
     <div>
-        &nbsp;客户名称：&nbsp;<input type="text" id="s_contact" size="20"
-                                onkeydown="if(event.keyCode==13) searchReservation()"/>
-        &nbsp;宠物名称：&nbsp;<input type="text" id="s_petName" size="20"
+        &nbsp;客户名称：<input class="easyui-combobox" id="s_contact" style="width: 100px"
+                          data-options="panelHeight:'auto',valueField:'contact',textField:'contact',url:'/admin/customer/comboList'"/>
+        &nbsp;宠物名称:&nbsp;<input type="text" id="s_petName" size="20"
                                 onkeydown="if(event.keyCode==13) searchReservation()"/>
         <a href="javascript:searchReservation()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>

@@ -26,7 +26,12 @@
                     <div class="col-lg-3">
                         <div th:include="page/customer/menuLeft::#m"></div>
                     </div>
-                    <div id="blog-post" class="col-lg-9">
+                    <div id="blog-post" class="col-lg-9" th:if="${informationList.size()<1}">
+                        <div class="box container">
+                            <h3>您还没有收到任何消息</h3>
+                        </div>
+                    </div>
+                    <div id="blog-post" class="col-lg-9" th:if="${informationList.size()>=1}">
                         <div class="box">
                             <div class="table-responsive mb-4">
                                 <table class="table">
@@ -43,7 +48,7 @@
                                         </td>
                                         <td style="text-align: center"><a
                                                 th:href="@{'/information/informationDetails?id='+${information.id}}" th:title="${information.content}"><span
-                                                style="color: red" th:text="${#strings.abbreviate(information.content,35)}"
+                                                style="color: #9B859D" th:text="${#strings.abbreviate(information.content,35)}"
                                                 th:if="${information.isRead==1}"></span><span
                                                 th:text="${#strings.abbreviate(information.content,35)}"
                                                 th:if="${information.isRead==0}"></span></a>

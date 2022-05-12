@@ -70,7 +70,7 @@ public class DamageListAdminController {
      * @throws Exception
      */
     @RequestMapping("/genCode")
-    @RequiresPermissions(value = "商品报损")
+    @RequiresPermissions(value = "药品报损")
     public String genCode() throws Exception {
         StringBuffer code = new StringBuffer("BX");
         code.append(DateUtil.getCurrentDateStr());
@@ -92,7 +92,7 @@ public class DamageListAdminController {
      * @throws Exception
      */
     @RequestMapping("/save")
-    @RequiresPermissions(value = "商品报损")
+    @RequiresPermissions(value = "药品报损")
     public Map<String, Object> save(DamageList damageList, String goodsJson){
         Map<String, Object> resultMap = new HashMap<>(16);
         // 设置操作用户

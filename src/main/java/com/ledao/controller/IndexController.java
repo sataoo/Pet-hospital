@@ -6,6 +6,7 @@ import com.ledao.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -25,6 +26,7 @@ import java.util.Map;
  * @create 2020-01-16 19:10
  */
 @Controller
+@ResponseBody
 public class IndexController implements CommandLineRunner, ServletContextListener {
 
     @Override
@@ -137,6 +139,7 @@ public class IndexController implements CommandLineRunner, ServletContextListene
         mav.setViewName("index");
         return mav;
     }
+
 
     public void loadSomeData() {
         Map<String,Object> map=new HashMap<>(16);

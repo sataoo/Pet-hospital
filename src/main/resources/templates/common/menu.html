@@ -11,7 +11,7 @@
         <div class="container"><a href="/" class="navbar-brand home"><img th:src="@{/static/images/img/logo3.png}"
                                                                           style="height: 60px" alt="Obaju logo"
                                                                           class="d-none d-md-inline-block"><img
-                th:src="@{/static/images/img/logo3.png}" alt="LeDao宠物医院" style="width: 140px"
+                th:src="@{/static/images/img/logo3.png}" alt="爱宠宠物医院" style="width: 140px"
                 class="d-inline-block d-md-none"><span class="sr-only">Obaju - go to homepage</span></a>
             <div class="navbar-buttons">
                 <button type="button" data-toggle="collapse" data-target="#navigation"
@@ -37,13 +37,9 @@
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer!=null}">
                                             <li class="nav-item"><a href="/customer/personalCenter" class="nav-link">个人信息</a>
                                             </li>
-                                            <li class="nav-item"><a href="/saleList/mySaleList/list/1" class="nav-link">我的订单</a>
-                                            </li>
                                             <li class="nav-item"><a href="/customer/myPet/list/1" class="nav-link">我的宠物</a>
                                             </li>
-                                            <li class="nav-item"><a href="/goods/myFavorite/list/1" class="nav-link">我的收藏</a>
-                                            </li>
-                                            <li class="nav-item"><a href="/suggestion/mySuggestion/list/1" class="nav-link">我的留言</a>
+                                            <li class="nav-item"><a href="/information/myInformation/list/1" class="nav-link">我的消息</a>
                                             </li>
                                         </ul>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer==null}">
@@ -60,7 +56,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <h5>预约服务</h5>
+                                        <h5>预约挂号</h5>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer!=null}">
                                             <li class="nav-item"><a href="/reservation/doctorCanReserve" class="nav-link">预约医生</a></li>
                                             <li class="nav-item"><a href="/reservation/beauticianCanReserve" class="nav-link">预约美容师</a></li>
@@ -75,7 +71,7 @@
                                     <div class="col-md-6 col-lg-3">
                                         <h5>看病服务</h5>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer!=null}">
-                                            <li class="nav-item"><a href="/inquiry/createInquiry" class="nav-link">客户问诊</a>
+                                            <li class="nav-item"><a href="/inquiry/createInquiry" class="nav-link">在线问诊</a>
                                             </li>
                                             <li class="nav-item"><a href="/inquiry/myInquiry/list/1" class="nav-link">问诊记录</a>
                                             </li>
@@ -87,7 +83,7 @@
                                             </li>
                                         </ul>
                                         <ul class="list-unstyled mb-3" th:if="${session.currentCustomer==null}">
-                                            <li class="nav-item"><a href="/login" class="nav-link">客户问诊(请先登录)</a>
+                                            <li class="nav-item"><a href="/login" class="nav-link">在线问诊(请先登录)</a>
                                             </li>
                                             <li class="nav-item"><a href="/login" class="nav-link">问诊记录(请先登录)</a>
                                             </li>
@@ -99,36 +95,46 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="col-md-6 col-lg-3">
-                                        <div class="banner"><a href="#"><img
-                                                th:src="@{/static/images/img/menuPhoto1.jpg}" alt=""
-                                                class="img img-fluid"></a></div>
-                                        <!--<div class="banner"><a href="#"><img th:src="@{/static/images/img/menuPhoto2.jpg}" alt="" class="img img-fluid"></a></div>-->
-                                    </div>
+<!--                                    <div class="col-md-6 col-lg-3" th:each="goodsType:${application.goodsTypeList}">-->
+<!--                                        <a th:href="'/goods/list/1?typeId='+${goodsType.id}" style="color: black"><h5-->
+<!--                                                th:text="${goodsType.getName()}"></h5></a>-->
+<!--                                        <ul class="list-unstyled mb-3"-->
+<!--                                            th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">-->
+<!--                                            <li class="nav-item"><a-->
+<!--                                                    th:href="'/goods/list/1?typeId='+${smallGoodsType.id}"-->
+<!--                                                    class="nav-link" th:text="${smallGoodsType.name}"></a></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6 col-lg-3">-->
+<!--                                        <div class="banner"><a href="#"><img-->
+<!--                                                th:src="@{/static/images/img/menuPhoto1.jpg}" alt=""-->
+<!--                                                class="img img-fluid"></a></div>-->
+<!--                                        &lt;!&ndash;<div class="banner"><a href="#"><img th:src="@{/static/images/img/menuPhoto2.jpg}" alt="" class="img img-fluid"></a></div>&ndash;&gt;-->
+<!--                                    </div>-->
                                 </div>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown"
-                                                                data-delay="200" class="dropdown-toggle nav-link">购物服务<b
-                            class="caret"></b></a>
-                        <ul class="dropdown-menu megamenu">
-                            <li>
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-3" th:each="goodsType:${application.goodsTypeList}">
-                                        <a th:href="'/goods/list/1?typeId='+${goodsType.id}" style="color: black"><h5
-                                                th:text="${goodsType.getName()}"></h5></a>
-                                        <ul class="list-unstyled mb-3"
-                                            th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">
-                                            <li class="nav-item"><a
-                                                    th:href="'/goods/list/1?typeId='+${smallGoodsType.id}"
-                                                    class="nav-link" th:text="${smallGoodsType.name}"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
+<!--                    <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown"-->
+<!--                                                                data-delay="200" class="dropdown-toggle nav-link">购物服务<b-->
+<!--                            class="caret"></b></a>-->
+<!--                        <ul class="dropdown-menu megamenu">-->
+<!--                            <li>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-6 col-lg-3" th:each="goodsType:${application.goodsTypeList}">-->
+<!--                                        <a th:href="'/goods/list/1?typeId='+${goodsType.id}" style="color: black"><h5-->
+<!--                                                th:text="${goodsType.getName()}"></h5></a>-->
+<!--                                        <ul class="list-unstyled mb-3"-->
+<!--                                            th:each="smallGoodsType:${goodsType.smallGoodsTypeList}">-->
+<!--                                            <li class="nav-item"><a-->
+<!--                                                    th:href="'/goods/list/1?typeId='+${smallGoodsType.id}"-->
+<!--                                                    class="nav-link" th:text="${smallGoodsType.name}"></a></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
                     <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown"
                                                                 data-delay="200" class="dropdown-toggle nav-link">了解更多<b
                             class="caret"></b></a>
@@ -160,26 +166,19 @@
                         </ul>
                     </li>
                 </ul>
-                <div class="navbar-buttons d-flex justify-content-end">
-                    <!-- /.nav-collapse-->
-                    <div id="search-not-mobile" class="navbar-collapse collapse"></div>
-                    <a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"
-                       title="搜索文章和商品"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
-                    <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">
-                        <a href="/goods/list/1?typeId=21" class="btn btn-primary navbar-btn" title="LeDao医院商城"><i
-                                class="fa fa-shopping-bag"></i>商城</a>
-                        <a href="/goods/myFavorite/list/1" class="btn btn-primary navbar-btn" title="我的收藏" th:if="${session.currentCustomer!=null}"><i
-                                class="fa fa-heart"></i>收藏</a>
-                        <a href="/shoppingCart" class="btn btn-primary navbar-btn"
-                           th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i><span>购物车<span
-                                class="badge badge-light"
-                                th:text="${session.shoppingCart.getShoppingCartItems().size()}"
-                                th:if="${session.shoppingCart!=null}"></span><span class="badge badge-light"
-                                                                                   th:if="${session.shoppingCart==null}">0</span></span></a>
-                        <a href="/login" class="btn btn-primary navbar-btn"
-                           th:if="${session.currentCustomer==null}"><span>登录</span></a>
-                    </div>
-                </div>
+<!--                <div class="navbar-buttons d-flex justify-content-end">-->
+<!--                    &lt;!&ndash; /.nav-collapse&ndash;&gt;-->
+<!--                    <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">-->
+<!--                        <a href="/goods/myFavorite/list/1" class="btn btn-primary navbar-btn" title="我的收藏" th:if="${session.currentCustomer!=null}"><i-->
+<!--                                class="fa fa-heart"></i>收藏</a>-->
+<!--                        <a href="/shoppingCart" class="btn btn-primary navbar-btn"-->
+<!--                           th:if="${session.currentCustomer!=null}"><i class="fa fa-shopping-cart"></i><span>购物车<span-->
+<!--                                class="badge badge-light"-->
+<!--                                th:text="${session.shoppingCart.getShoppingCartItems().size()}"-->
+<!--                                th:if="${session.shoppingCart!=null}"></span><span class="badge badge-light"-->
+<!--                                                                                   th:if="${session.shoppingCart==null}">0</span></span></a>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </nav>

@@ -16,7 +16,7 @@
                         <div id="main-slider" class="owl-carousel owl-theme">
                             <div class="item" th:each="firstCarousel:${application.firstCarouselList}">
                                 <img th:src="@{'/static/images/carouselImage/'+${firstCarousel.getImageName()}}"
-                                     style="height: 460px"
+                                     style="height: 600px"
                                      class="img-fluid">
                             </div>
                         </div>
@@ -80,20 +80,20 @@
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img
+                                        <div class="front"><img
                                                 th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
                                                 alt="" class="img-fluid" style="height: 250px"></a>
                                         </div>
-                                        <div class="back"><a href="detail.html"><img
+                                        <div class="back"><img
                                                 th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}"
                                                 alt="" class="img-fluid" style="height: 250px"></a></div>
                                     </div>
                                 </div>
-                                <a href="detail.html" class="invisible"><img
+                                <div class="invisible"><img
                                         th:src="@{'/static/images/userImage/'+${doctor.getImageName()}}" alt=""
-                                        class="img-fluid" style="height: 250px"></a>
+                                        class="img-fluid" style="height: 250px"></div>
                                 <div class="text">
-                                    <h3><a href="detail.html" th:text="${doctor.getTrueName()}"></a></h3>
+                                    <h3 th:text="${doctor.getTrueName()}"></h3>
                                 </div>
                             </div>
                             <!-- /.product-->
@@ -124,7 +124,7 @@
                         <div id="get-inspired" class="owl-carousel owl-theme">
                             <div class="item" th:each="secondCarousel:${application.secondCarouselList}">
                                 <img th:src="@{'/static/images/carouselImage/'+${secondCarousel.getImageName()}}"
-                                     alt="Get inspired" class="img-fluid" style="height: 460px">
+                                     alt="Get inspired" class="img-fluid" style="height: 550px">
                             </div>
                         </div>
                     </div>
@@ -154,17 +154,17 @@
                                     <div class="flipper">
                                         <div class="front"><img
                                                 th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
-                                                alt="" class="img-fluid" style="height: 250px">
+                                                alt="" class="img-fluid" style="height: 200px">
                                         </div>
                                         <div class="back"><a href="#"><img
                                                 th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
-                                                alt="" class="img-fluid" style="height: 250px"></a></div>
+                                                alt="" class="img-fluid" style="height: 200px"></a></div>
                                     </div>
                                 </div>
                                 <a class="invisible"><img
                                         th:src="@{'/static/images/equipmentTypeImage/' + ${equipmentType.getImageName()}}"
                                         alt=""
-                                        class="img-fluid" style="height: 250px"></a>
+                                        class="img-fluid" style="height: 200px"></a>
                                 <div class="text">
                                     <h3 th:text="${equipmentType.getName()}"><a href="detail.html"></a></h3>
                                 </div>

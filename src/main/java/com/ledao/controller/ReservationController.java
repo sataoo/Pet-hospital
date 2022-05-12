@@ -127,7 +127,7 @@ public class ReservationController {
     }
 
     /**
-     * 查看可预约的医生
+     * 查看可预约的美容师
      *
      * @return
      */
@@ -199,16 +199,22 @@ public class ReservationController {
     public ModelAndView myReservation(@PathVariable(value = "id", required = false) Integer page, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> map = new HashMap<>(16);
+
+        //分页
         int pageSize = 5;
         map.put("start", (page - 1) * pageSize);
         map.put("size", pageSize);
         Customer customer = (Customer) session.getAttribute("currentCustomer");
         map.put("customerId", customer.getId());
         List<Reservation> reservationList = reservationService.list(map);
+
+        //返回宠物名
         for (Reservation reservation : reservationList) {
             reservation.setPet(petService.findById(reservation.getPet().getId()));
         }
+        //返回预约记录数
         Long total = reservationService.getCount(map);
+
         mav.addObject("reservationList", reservationList);
         mav.addObject("total", total);
         mav.addObject("pageCode", PageUtil.genPagination2("/reservation/myReservation/list", total, page, pageSize));

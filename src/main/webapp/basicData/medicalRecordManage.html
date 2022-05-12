@@ -105,6 +105,21 @@
 
         });
 
+        $(function () {
+            $("#customerName").combobox({
+                mode: 'remote',
+                url: '/admin/customer/comboList',
+                valueField: 'contact',
+                textField: 'contact',
+                delay: 100,
+                onSelect: function(rec){
+                    var url = '/admin/pet/petList?customerId='+rec.id;
+                    $('#petName').combobox('clear');
+                    $('#petName').combobox('reload', url);
+                }
+            });
+        })
+
         function formatDate(val, row) {
             return val.substring(0, 4) + "年" + val.substring(5, 7) + "月" + val.substring(8, 10) + "日 "+val.substring(11,13)+":"+val.substring(14,16)+":"+val.substring(17,19);
         }
@@ -146,13 +161,15 @@
             <tr>
                 <td valign="top">顾客名称:</td>
                 <td>
-                    <input id="customerName" name="customerName" class="easyui-validatebox" required="true" style="width: 200px">
+                    <input class="easyui-combobox" id="customerName" name="customerName" style="width: 250px"
+                           data-options="required:true,panelHeight:'auto'"/>
                 </td>
             </tr>
             <tr>
                 <td valign="top">宠物名称:</td>
                 <td>
-                    <input id="petName" name="petName" class="easyui-validatebox" required="true" style="width: 200px">
+                    <input class="easyui-combobox" id="petName" name="petName" style="width: 250px"
+                           data-options="required:true,panelHeight:'auto',valueField:'name',textField:'name'"/>
                 </td>
             </tr>
             <tr>

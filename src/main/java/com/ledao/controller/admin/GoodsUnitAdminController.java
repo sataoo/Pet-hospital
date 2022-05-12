@@ -36,7 +36,7 @@ public class GoodsUnitAdminController {
      * @return
      */
     @RequestMapping("/comboList")
-    @RequiresPermissions(value = "商品管理")
+    @RequiresPermissions(value = "药品管理")
     public List<GoodsUnit> comboList() {
         return goodsUnitService.listAll();
     }
@@ -47,7 +47,7 @@ public class GoodsUnitAdminController {
      * @return
      */
     @RequestMapping("/listAll")
-    @RequiresPermissions(value = "商品管理")
+    @RequiresPermissions(value = "药品管理")
     public Map<String, Object> listAll() {
         Map<String, Object> resultMap = new HashMap<>(16);
         resultMap.put("rows", goodsUnitService.listAll());
@@ -62,7 +62,7 @@ public class GoodsUnitAdminController {
      * @return
      */
     @RequestMapping("/save")
-    @RequiresPermissions(value = "商品管理")
+    @RequiresPermissions(value = "药品管理")
     public Map<String, Object> save(GoodsUnit goodsUnit) {
         Map<String, Object> resultMap = new HashMap<>(16);
         goodsUnitService.add(goodsUnit);
@@ -78,7 +78,7 @@ public class GoodsUnitAdminController {
      * @return
      */
     @RequestMapping("/delete")
-    @RequiresPermissions(value = "商品管理")
+    @RequiresPermissions(value = "药品管理")
     public Map<String, Object> delete(Integer id) {
         Map<String, Object> resultMap = new HashMap<>(16);
         logService.add(new Log(Log.DELETE_ACTION, "删除商品单位信息：" + goodsUnitService.findById(id)));

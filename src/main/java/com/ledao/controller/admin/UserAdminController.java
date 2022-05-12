@@ -56,7 +56,7 @@ public class UserAdminController {
      */
     @RequestMapping("/comboList")
     @ResponseBody
-    @RequiresPermissions(value = "设备使用记录管理")
+//    @RequiresPermissions(value = "设备使用记录管理")
     public List<User> comboList(String q) {
         if (q == null) {
             q = "";

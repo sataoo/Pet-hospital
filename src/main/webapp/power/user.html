@@ -161,6 +161,13 @@
                 return "维修员";
             }
         }
+
+        $(document).ready(function() {
+            $("#save").click(function(){
+                alert("系统提示：用户权限修改成功！");
+            });
+        });
+
     </script>
 </head>
 <body style="margin: 1px">
@@ -229,7 +236,8 @@
                         <option value="1">系统维护人员</option>
                         <option value="2">医生</option>
                         <option value="3">美容师</option>
-                        <option value="4">维修员</option>
+                        <option value="4">仓库管理员</option>
+                        <option value="5">前台人员</option>
                     </select>
                 </td>
             </tr>
@@ -244,7 +252,7 @@
 </div>
 
 <div id="dlg-buttons">
-    <a href="javascript:saveUser()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:saveUser()" class="easyui-linkbutton" iconCls="icon-ok" >保存</a>
     <a href="javascript:closeUserDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 
@@ -263,7 +271,7 @@
 </div>
 
 <div id="dlg-buttons2">
-    <a href="javascript:saveRoleSet()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:saveRoleSet()" class="easyui-linkbutton" iconCls="icon-ok" id="save">保存</a>
     <a href="javascript:closeRoleSetDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 </div>
 </body>
